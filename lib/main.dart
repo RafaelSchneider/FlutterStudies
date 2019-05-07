@@ -29,14 +29,24 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   final TextEditingController _textFieldController_1 = TextEditingController();
   final TextEditingController _textFieldController_2 = TextEditingController();
+  final TextEditingController _textFieldController_3 = TextEditingController();
   String _value = "";
 
   void _incrementCounter() {
     setState(() {
       _counter++;
-      print('Teste');
       _value = _textFieldController_1.text;
       _textFieldController_2.text = _value;
+    });
+  }
+
+  void _escreveNoTerceiroField(){
+    setState(() {
+      if (_textFieldController_3.text.isEmpty) {
+        _textFieldController_3.text = "Clicou no outro Botao";
+        _value = "Alterou até esse campo";
+      } else
+        _textFieldController_3.text = "";
     });
   }
 
@@ -50,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       body: Center(
 
-          child: Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
@@ -66,7 +76,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             TextField(
             controller: _textFieldController_2,
-      )
+            ),
+            TextField(
+              decoration: new InputDecoration(
+                border:  new OutlineInputBorder(
+                    borderSide: new BorderSide(color: Colors.teal)
+                ),
+              ),
+              controller: _textFieldController_3,
+            ),
+            RaisedButton(
+              onPressed: _escreveNoTerceiroField,
+            )
           ],
         ),
       ),
@@ -75,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+
     );
   }
 }
