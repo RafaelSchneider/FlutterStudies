@@ -16,6 +16,22 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class MySecondRoute extends StatelessWidget{
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Flutter second page")
+      ),
+//      body: RaisedButton(
+//          onPressed: () {
+//            Navigator.pop(context);
+//          }),
+    );
+  }
+}
+
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -87,6 +103,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             RaisedButton(
               onPressed: _escreveNoTerceiroField,
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                    MaterialPageRoute(builder: (context) => MySecondRoute())
+                );
+              },
             )
           ],
         ),
